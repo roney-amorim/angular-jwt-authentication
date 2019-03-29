@@ -3,18 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClientesModule } from './clientes/clientes.module';
-import { CadastroComponent } from './clientes/cadastro/cadastro.component';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent    
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

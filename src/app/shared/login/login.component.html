@@ -1,0 +1,27 @@
+<div class="login elevation-box-1200">
+  <div class="ui-g ui-fluid">
+    <div id="logo" class="ui-g-12">
+        <!-- <img class="img-angular" src="../../../assets/images/angular-logo.png" alt="Angular"> -->
+        <img class="img-angular" src="../../../favicon.ico" alt="Angular">
+    </div>
+    <form id="formLogin" autocomplete="off" #formLogin="ngForm">
+        <div class="ui-g-12">
+            <h1>faça seu Login:</h1>
+        </div>
+        <div class="ui-g-12">
+            <!-- {{errorMessage}} -->
+        </div>
+        <div class="ui-g-12">
+            <label class="displayBlock">Usuário:</label>
+            <input id="usuario" pInputText type="text" name="usuario" [(ngModel)]="usuario.nome">
+        </div>
+        <div class="ui-g-12">
+            <label class="displayBlock">Senha:</label>
+            <input id="senha" pInputText type="password" name="senha" [(ngModel)]="usuario.senha">
+        </div>
+        <div class="btn-login ui-g-12">
+          <button id="btnLogin" pButton type="submit" label="Entrar" (click)="login()"></button>
+        </div>
+    </form>
+  </div>
+</div>

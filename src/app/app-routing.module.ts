@@ -1,3 +1,4 @@
+import { LoginComponent } from "./shared/login/login.component";
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './shared/home/home.component';
@@ -6,6 +7,7 @@ import { PaginaNaoEncontradaComponent } from './shared/pagina-nao-encontrada/pag
 const routes: Routes = [
   { path:'clientes', loadChildren:'./clientes/clientes.module#ClientesModule'},
   { path: 'home', component: HomeComponent},
+  { path: 'login', component: LoginComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PaginaNaoEncontradaComponent },
 ];
