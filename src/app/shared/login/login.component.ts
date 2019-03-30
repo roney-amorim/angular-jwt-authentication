@@ -1,5 +1,7 @@
+import { AuthService } from "./../auth.service";
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../models/model';
+import { MessageService } from 'primeng/primeng';
 
 @Component({
   selector: 'app-login',
@@ -7,16 +9,15 @@ import { Usuario } from '../models/model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
- 
+
   usuario: Usuario = new Usuario();
-  constructor() { }
+  constructor(private auth: AuthService, private msg: MessageService) { }
 
   ngOnInit() {
   }
 
-  login(){
-    this.usuario.nome = 'Roney Amorim';
-    this.usuario.senha = '123456';
+  login() {
+      this.auth.login(this.usuario);
   }
 
 }

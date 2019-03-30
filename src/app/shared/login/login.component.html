@@ -6,18 +6,19 @@
     </div>
     <form id="formLogin" autocomplete="off" #formLogin="ngForm">
         <div class="ui-g-12">
-            <h1>faça seu Login:</h1>
+            <h1>Faça seu Login:</h1>
+        </div>
+        <div class="ui-g-12">          
+          <span class="ui-float-label">
+            <input id="usuario" type="text" pInputText  name="usuario" [(ngModel)]="usuario.nome"> 
+            <label for="usuario">Usuario</label>
+          </span>
         </div>
         <div class="ui-g-12">
-            <!-- {{errorMessage}} -->
-        </div>
-        <div class="ui-g-12">
-            <label class="displayBlock">Usuário:</label>
-            <input id="usuario" pInputText type="text" name="usuario" [(ngModel)]="usuario.nome">
-        </div>
-        <div class="ui-g-12">
-            <label class="displayBlock">Senha:</label>
+          <span class="ui-float-label">
             <input id="senha" pInputText type="password" name="senha" [(ngModel)]="usuario.senha">
+            <label for="senha">Senha</label>
+          </span>
         </div>
         <div class="btn-login ui-g-12">
           <button id="btnLogin" pButton type="submit" label="Entrar" (click)="login()"></button>

@@ -8,12 +8,16 @@ import { HomeComponent } from './home/home.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 // PrimeNG Dependencies
-import { AccordionModule } from 'primeng/primeng';
+
+import { AccordionModule, MessageService } from 'primeng/primeng';
 import { PanelModule } from 'primeng/primeng';
 import { ButtonModule } from 'primeng/primeng';
 import { RadioButtonModule } from 'primeng/primeng';
 import { NavComponent } from './nav/nav.component';
 import { RouterModule } from '@angular/router';
+import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -28,7 +32,9 @@ import { RouterModule } from '@angular/router';
     AccordionModule,
     PanelModule,
     ButtonModule,
-    RadioButtonModule
+    RadioButtonModule,
+    InputTextModule,
+    ToastModule
   ],
   exports: [
     FormsModule,
@@ -39,7 +45,9 @@ import { RouterModule } from '@angular/router';
     AccordionModule,
     PanelModule,
     ButtonModule,
-    RadioButtonModule
+    RadioButtonModule,
+    InputTextModule,
+    ToastModule
   ],
   providers: []
 })
@@ -48,7 +56,8 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
-        AuthService
+        AuthService,
+        MessageService
       ]
     }
   }
