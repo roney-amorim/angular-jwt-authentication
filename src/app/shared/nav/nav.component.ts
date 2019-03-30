@@ -1,4 +1,4 @@
-import { AuthService } from './../auth.service';
+import { AuthService } from '../seguranca/auth.service';
 import { Component, OnInit} from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -14,10 +14,10 @@ export class NavComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.usuarioLogado$ = this.authService.usuarioEstaLogado;
+    this.usuarioLogado$ = this.authService.isLoggedIn;
   }
 
-  onLogout() {
+  logout() {
     this.authService.logout();
   }
 

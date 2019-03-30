@@ -2,7 +2,7 @@ import { MessageService } from "primeng/primeng";
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from './models/model';
+import { Usuario } from '../models/model';
 
 @Injectable()
 export class AuthService {
@@ -10,7 +10,7 @@ export class AuthService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   //Encapsular loggedIn
-  get usuarioEstaLogado() {
+  get isLoggedIn() {
     return this.loggedIn.asObservable();
   }
 

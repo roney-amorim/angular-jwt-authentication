@@ -1,4 +1,4 @@
-import { AuthService } from "./../auth.service";
+import { AuthService } from "../seguranca/auth.service";
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../models/model';
 import { MessageService } from 'primeng/primeng';

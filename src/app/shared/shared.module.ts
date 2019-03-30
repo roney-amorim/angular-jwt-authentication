@@ -1,4 +1,5 @@
-import { AuthService } from './auth.service';
+import { AuthGuard } from "./seguranca/auth.guard";
+import { AuthService } from './seguranca/auth.service';
 import { LoginComponent } from './login/login.component';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -57,7 +58,8 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         AuthService,
-        MessageService
+        MessageService,
+        AuthGuard
       ]
     }
   }
