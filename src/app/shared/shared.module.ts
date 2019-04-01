@@ -1,23 +1,21 @@
-import { AuthGuard } from "./seguranca/auth.guard";
-import { AuthService } from './seguranca/auth.service';
-import { LoginComponent } from './login/login.component';
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthInterceptor } from "./seguranca/auth-interceptor";
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-import { HomeComponent } from './home/home.component';
-import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
-
-// PrimeNG Dependencies
-
-import { AccordionModule, MessageService } from 'primeng/primeng';
-import { PanelModule } from 'primeng/primeng';
-import { ButtonModule } from 'primeng/primeng';
-import { RadioButtonModule } from 'primeng/primeng';
-import { NavComponent } from './nav/nav.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
+// PrimeNG Dependencies
+import { AccordionModule, ButtonModule, MessageService, PanelModule, RadioButtonModule } from 'primeng/primeng';
 import { ToastModule } from 'primeng/toast';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { NavComponent } from './nav/nav.component';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { AuthGuard } from "./seguranca/auth.guard";
+import { AuthService } from './seguranca/auth.service';
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +33,8 @@ import { ToastModule } from 'primeng/toast';
     ButtonModule,
     RadioButtonModule,
     InputTextModule,
-    ToastModule
+    ToastModule,
+    HttpClientModule
   ],
   exports: [
     FormsModule,
@@ -48,7 +47,8 @@ import { ToastModule } from 'primeng/toast';
     ButtonModule,
     RadioButtonModule,
     InputTextModule,
-    ToastModule
+    ToastModule,
+    HttpClientModule
   ],
   providers: []
 })
@@ -59,7 +59,12 @@ export class SharedModule {
       providers: [
         AuthService,
         MessageService,
-        AuthGuard
+        AuthGuard,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true,
+        },
       ]
     }
   }
