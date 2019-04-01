@@ -15,22 +15,22 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
-  constructor(private auth: AuthService, private msg: MessageService, 
+  constructor(private auth: AuthService, private msg: MessageService,
     private router: Router) { }
 
   ngOnInit() {
   }
 
   login() {
-      this.auth.login(this.usuario)
-      .pipe(first())
-            .subscribe(
-                data => {
-                    this.router.navigate(['/']);
-                },
-                error => {
-                    console.log(error);
-                    this.router.navigate(['/login']);
-                });
+    this.auth.login(this.usuario)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.router.navigate(['/']);
+        },
+        error => {
+          console.log(error);
+          this.router.navigate(['/login']);
+        });
   }
 }

@@ -17,14 +17,14 @@ export class NavComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.userItems = [      
+    this.userItems = [
       { label: 'Sair', icon: 'fa fa-sign-out', command: (click)=> this.logout() }
     ];
 
     this.items = [
       { label: 'Home', icon: 'fa fa-home', routerLink:['/'] },
-      { label: 'Clientes', icon: 'fa fa-users', routerLink:['/clientes'] 
-      // visible: this.authService.temQualquerPermissao(['ROLE_CADASTRAR','ROLE_CONSULTAR']),
+      { label: 'Clientes', icon: 'fa fa-users', routerLink:['/clientes'],
+      visible: this.authService.hasAnyPermission(['ROLE_CADASTRAR', 'ROLE_CONSULTAR']),
       }
     ];
     this.usuarioLogado$ = this.authService.isLoggedin;

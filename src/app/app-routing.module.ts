@@ -6,8 +6,10 @@ import { HomeComponent } from './shared/home/home.component';
 import { PaginaNaoEncontradaComponent } from './shared/pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 const routes: Routes = [
-  { path:'clientes', loadChildren:'./clientes/clientes.module#ClientesModule', canActivate: [AuthGuard]},
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path:'clientes', loadChildren:'./clientes/clientes.module#ClientesModule', canActivate: [AuthGuard],
+  data:{ roles: ['ROLE_CLIENTE_CADASTRAR', 'ROLE_CLIENTE_EDITAR', 'ROLE_CLIENTE_CONSULTAR', 'ROLE_CLIENTE_EXCLUIR'] }},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
+  data:{ roles: ['ROLE_CLIENTE_CADASTRAR'] }},
 
   { path: 'login', component: LoginComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
