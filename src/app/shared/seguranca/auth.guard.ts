@@ -1,3 +1,4 @@
+import { MessageService } from "primeng/primeng";
 import { AuthService } from "./auth.service";
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { of } from 'rxjs';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private message: MessageService) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     let loggedIn: boolean;
@@ -19,14 +20,19 @@ export class AuthGuard implements CanActivate {
         if (this.authService.isLoggedIn()) {
           return of(next.data.roles && this.authService.hasAnyPermission(next.data.roles));
         } else {
-          this.router.navigate(['login']);
+          this.router.navigate(['/login']);
           return of(false);
         }
       });
       this.authService.logout();
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
       return of(false);
-    } // if !loggedIn
-    return of(next.data.roles && this.authService.hasAnyPermission(next.data.roles));
+    } else if(next.data.roles && !this.authService.hasAnyPermission(next.data.roles)){
+
+      this.message.add({severity: 'error', summary: 'Não Autorizado', detail: 'Usuário logado sem permissão de acesso.  ' + this.router.getCurrentNavigation()});
+      this.router.navigate(['/login']);
+      return of(false);
+    }
+    return of(true);
   }
 }

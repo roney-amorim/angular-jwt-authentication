@@ -37,7 +37,7 @@ export class AuthService {
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     this.loggedIn.next(true);
   }
-  
+
   get token(): string {
     return localStorage.getItem('token');
   }
