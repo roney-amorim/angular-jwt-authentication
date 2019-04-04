@@ -1,7 +1,7 @@
 <script src="../../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../../../../node_modules/jquery/dist/jquery.min.js"></script>
 
-<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark" *ngIf="usuarioLogado$ | async">
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" [routerLink]="['/home']">
     Workshop <img class="img-angular" src="../../../favicon.ico" alt="Angular"> Angular
   </a>
@@ -23,7 +23,7 @@
     </ul>
     <ul class="navbar-nav dropdown">
       <li class="nav-item active" *ngFor="let menu of userItems">
-        <a class="nav-link" [routerLink]="menu.routerLink">
+        <a class="nav-link" (click)="logout()">
           <i [class]="menu.icon"></i>
           {{menu.label}}
           <span class="sr-only">(current)</span>

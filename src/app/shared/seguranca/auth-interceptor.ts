@@ -11,11 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     constructor(private authService: AuthService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // add authorization header with jwt token if available
-        let loggedIn: boolean;
-        this.authService.isLoggedin.subscribe(x => { loggedIn = x });
-
-        if (loggedIn) {
+        if ( this.authService.isLoggedIn()) {
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`

@@ -1,6 +1,6 @@
 import { JWTPayload } from './../models/model';
 import { MessageService } from 'primeng/primeng';
-import { BehaviorSubject, throwError, Observable } from 'rxjs';
+import { BehaviorSubject, throwError, Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/model';
 import { tap, shareReplay, map, catchError } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import * as jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
 
 import { environment } from './../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -17,15 +18,15 @@ export class AuthService {
   payload: JWTPayload;
 
   private apiRoot: any = environment;
+  private URL: string;
 
   constructor(
     private http: HttpClient,
-    private message: MessageService
-  ) {}
-
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  get isLoggedin() {
-    return this.loggedIn.asObservable();
+    private message: MessageService, 
+    private router: Router
+  ) {
+    this.URL = this.apiRoot.url.concat('oauth/token');
+    this.loadToken();
   }
 
   private setSession(authResult) {
@@ -35,36 +36,39 @@ export class AuthService {
 
     localStorage.setItem('token', authResult.access_token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-    this.loggedIn.next(true);
   }
-
+  
   get token(): string {
     return localStorage.getItem('token');
   }
-
+  
   login(usuario: Usuario): Observable<void> {
-        const body: any = {username: usuario.nome, password: usuario.senha};
-        return this.http.post<any>(
-          this.apiRoot.url.concat('oauth/token'), body).pipe(map(response => {
-        this.setSession(response);
-      }), catchError((error) => {
-        console.log(error);
-        this.message.add({severity: 'error', summary: 'Erro', detail: error.message});
-        return throwError(error.message);
-      }));
+    const body: any = {username: usuario.nome, password: usuario.senha, grant_type: 'password'};
+
+    return this.http.post<any>(
+        this.URL, body).pipe(map(response => {
+      this.setSession(response);
+    }), catchError((error) => {
+      console.log(error);
+      this.message.add({severity: 'error', summary: 'Erro', detail: error.error});
+      return throwError(error.message);
+    }));
   }
 
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('expires_at');
+    this.router.navigate(['/login']);
   }
 
   refreshToken(): Observable<void> {
     if (moment().isBefore(this.getExpiration())) {
       const headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');
+      headers.append("Authentication", localStorage.getItem('token'));
+      
       const body = {grant_type: 'refresh_token'};
-  
+
       return this.http.post<any>(
         this.apiRoot.url.concat('oauth/token'), body, {headers}).pipe(map(response => {
           this.setSession(response);
@@ -73,7 +77,8 @@ export class AuthService {
           this.message.add({severity: 'error', summary: 'Erro', detail: error.message});
           return throwError(error.message);
         }));
-    }
+      }
+    return of();
   }
 
   getExpiration() {
@@ -87,10 +92,6 @@ export class AuthService {
     return moment().isBefore(this.getExpiration());
   }
 
-  isLoggedOut() {
-    return !this.isLoggedIn();
-  }
-
   hasPermission(role: string) {
     return this.payload && this.payload.authorities.includes(role);
   }
@@ -102,5 +103,7 @@ export class AuthService {
     }
     return false;
   }
-
+  loadToken(){
+    this.payload = jwtDecode(localStorage.getItem('token')) as JWTPayload; 
+  }
 }

@@ -13,9 +13,9 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router, private message: MessageService) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    let loggedIn: boolean;
-    this.authService.isLoggedin.subscribe(x => { loggedIn = x });
-    if (!loggedIn) {
+    // let loggedIn: boolean;
+    // this.authService.isLoggedin.subscribe(rx => { loggedIn = rx });
+    if (!this.authService.isLoggedIn()) {
       this.authService.refreshToken().subscribe(resp => {
         if (this.authService.isLoggedIn()) {
           return of(next.data.roles && this.authService.hasAnyPermission(next.data.roles));

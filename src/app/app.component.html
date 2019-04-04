@@ -1,4 +1,4 @@
-<app-nav></app-nav>
+<app-nav  *ngIf="exibirMenu()"></app-nav>
 <div class="content">
     <router-outlet></router-outlet>
     <p-growl [style]="{marginTop: '5%'}"></p-growl>
