@@ -1,3 +1,23 @@
 <p>
   cadastro works!
 </p>
+<form id="formLogin" autocomplete="off" #formLogin="ngForm">
+        <div class="ui-g-12">
+            <h1>Faça seu Login:</h1>
+        </div>
+        <div class="ui-g-12">          
+          <span class="ui-float-label">
+            <input id="usuario" type="text" pInputText  name="usuario" [(ngModel)]="cliente.nome"> 
+            <label for="usuario">Usuario</label>
+          </span>
+        </div>
+        <div class="ui-g-12">
+          <span class="ui-float-label">
+            <input id="documento" pInputText type="text" name="documento" [(ngModel)]="cliente.documento">
+            <label for="documento">Documento</label>
+          </span>
+        </div>
+        <div class="btn-login ui-g-12">
+          <button id="btnLogin" pButton type="submit" label="Entrar" (click)="salvar()"></button>
+        </div>
+    </form>

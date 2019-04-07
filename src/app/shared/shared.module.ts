@@ -6,7 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 // PrimeNG Dependencies
-import { AccordionModule, ButtonModule, MessageService, PanelModule, RadioButtonModule, GrowlModule } from 'primeng/primeng';
+import { RadioButtonModule, GrowlModule  } from 'primeng/primeng';
+import { AccordionModule, ButtonModule, MessageService, PanelModule  } from 'primeng/primeng';
+import {TableModule} from 'primeng/table';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
@@ -28,6 +30,7 @@ import { AuthService } from './seguranca/auth.service';
     RouterModule,
     BrowserAnimationsModule,
     AccordionModule,
+    TableModule,
     PanelModule,
     ButtonModule,
     RadioButtonModule,
@@ -42,6 +45,7 @@ import { AuthService } from './seguranca/auth.service';
     BrowserAnimationsModule,
     FormsModule,
     AccordionModule,
+    TableModule,
     PanelModule,
     ButtonModule,
     RadioButtonModule,

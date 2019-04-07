@@ -104,6 +104,7 @@ export class AuthService {
     return false;
   }
   loadToken(){
-    this.payload = jwtDecode(localStorage.getItem('token')) as JWTPayload; 
+    const token = localStorage.getItem('token');
+    this.payload = token !== null ? jwtDecode(localStorage.getItem('token')) as JWTPayload : undefined; 
   }
 }

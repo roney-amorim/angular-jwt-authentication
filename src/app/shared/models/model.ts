@@ -4,11 +4,15 @@ export class Usuario {
   senha ?: string;
 }
 
-
 export class JWTPayload {
   usr: number;
   name: string;
   funcional: string;
   exp: number;
   authorities: string[];
+}
+
+export class Cliente {
+  nome: string;
+  documento: string;
 }
