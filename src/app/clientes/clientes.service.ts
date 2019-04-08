@@ -17,13 +17,16 @@ export class ClientesService {
    salvar(cliente:Cliente): Observable<Cliente>{
     return this.http.post<Cliente>(this.BASE_URL.concat('/clientes'), cliente).pipe(map(json =>{ return json }));
   }
+  buscarPorCodigo(codigo:number): Observable<Cliente>{
+    return this.http.get<Cliente>(this.BASE_URL.concat(`/clientes/${codigo}`)).pipe(map(json =>{ return json }));
+  }
   consultar(): Observable<Cliente[]>{
     return this.http.get<Cliente[]>(this.BASE_URL.concat('/clientes')).pipe(map(json =>{ return json }));
   }
   alterar(cliente:Cliente): Observable<Cliente>{
     return this.http.patch<Cliente>(this.BASE_URL.concat('/clientes'), cliente).pipe(map(json =>{ return json }));
   }
-  deletar(cliente:Cliente): Observable<Cliente>{
-    return this.http.patch<Cliente>(this.BASE_URL.concat(`/clientes/${cliente.documento}`), cliente).pipe(map(json =>{ return json }));
+  deletar(codigo:number): Observable<Cliente>{
+    return this.http.delete<Cliente>(this.BASE_URL.concat(`/clientes/${codigo}`)).pipe(map(json =>{ return json }));
   }
 }

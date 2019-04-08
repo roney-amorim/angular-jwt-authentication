@@ -13,6 +13,12 @@ export class JWTPayload {
 }
 
 export class Cliente {
-  nome: string;
-  documento: string;
+  codigoCliente: number;
+  nome ?: string;
+  documento ?: string;
+  dataAlteracao ?: string
+  dataCadastro ?: string;
+  dataNascimento ?: string;
+  usuarioAlteracao ?: string;
+  usuarioCadastro ?: string;
 }

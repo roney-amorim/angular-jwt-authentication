@@ -8,7 +8,9 @@ const routes: Routes = [
   {path:'', component: ListarComponent, canActivate: [AuthGuard], 
   data:{ roles: ['ROLE_CLIENTE_CONSULTAR'] }},
   {path:'cadastrar', component: CadastroComponent, canActivate: [AuthGuard],
-  data:{ roles: ['ROLE_CLIENTE_CADASTRAR', 'ROLE_CLIENTE_EDITAR'] }}
+  data:{ roles: ['ROLE_CLIENTE_CADASTRAR'] }},
+  {path:'cadastrar/:id', component: CadastroComponent, canActivate: [AuthGuard],
+  data:{ roles: ['ROLE_CLIENTE_EDITAR'] }}
 ];
 
 @NgModule({

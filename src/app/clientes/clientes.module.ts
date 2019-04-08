@@ -1,3 +1,4 @@
+import { ButtonModule, CalendarModule } from "primeng/primeng";
 import { FormsModule } from "@angular/forms";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,9 +14,10 @@ import {TableModule} from 'primeng/table';
     CommonModule,
     FormsModule,
     ClientesRoutingModule,
+    ButtonModule,
+    CalendarModule,
     TableModule
   ],
-  exports: [CadastroComponent, ListarComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  exports: [CadastroComponent, ListarComponent]
 })
 export class ClientesModule { }
