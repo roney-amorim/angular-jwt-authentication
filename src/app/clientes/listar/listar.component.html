@@ -5,30 +5,30 @@
     </div>
 
     <div class="ui-g-10">
-        <p-table [value]="clientes" [columns]="cols" [rows]="10" [paginator]="true" styleClass="my-table">
-            <ng-template pTemplate="header" let-columns>
+        <p-table [value]="clientes" [rows]="10" [paginator]="true" styleClass="my-table">
+            <ng-template pTemplate="header">
                 <tr>
-                    <th *ngFor="let col of columns">
-                        {{col.header}}
-                    </th>
+                    <th>Nome</th>
+                    <th>Documento</th>
+                    <th>Data Nascimento</th>
                     <th>Ação</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <ng-template pTemplate="body" let-cliente>
                 <tr>
-                    <td *ngFor="let col of columns" style="text-align:center">
-                        {{rowData[col.field]}}
-                    </td>
+                    <td style="text-align:center">{{cliente.nome}}</td>
+                    <td style="text-align:center">{{cliente.documento}}</td>
+                    <td style="text-align:center">{{cliente.dataNascimento | date: 'dd/MM/yyyy'}}</td>
                     <td style="text-align:center">
-                        <p-button (click)="remove(rowData.documento)" icon="pi pi-trash" style="padding-right: 1px"></p-button>
+                        <p-button (click)="remove(cliente.codigoCliente)" icon="pi pi-trash" style="padding-right: 1px"></p-button>
 
-                        <p-button [routerLink]="['cadastrar',rowData.codigoCliente]" icon="pi pi-pencil"></p-button>
+                        <p-button [routerLink]="['cadastrar',cliente.codigoCliente]" icon="pi pi-pencil"></p-button>
                     </td>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="emptymessage" let-columns>
+            <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td [attr.colspan]="columns.length + 1" style="text-align:center">
+                    <td [attr.colspan]="4" style="text-align:center">
                         Nenhum registro encontrado
                     </td>
                 </tr>

@@ -26,7 +26,7 @@ export class ClientesService {
   alterar(cliente:Cliente): Observable<Cliente>{
     return this.http.patch<Cliente>(this.BASE_URL.concat('/clientes'), cliente).pipe(map(json =>{ return json }));
   }
-  deletar(codigo:number): Observable<Cliente>{
-    return this.http.delete<Cliente>(this.BASE_URL.concat(`/clientes/${codigo}`)).pipe(map(json =>{ return json }));
+  deletar(codigo: number): Observable<Cliente>{
+    return this.http.delete<Cliente>(this.BASE_URL.concat('/clientes/' + codigo)).pipe(map(json =>{ return json }));
   }
 }

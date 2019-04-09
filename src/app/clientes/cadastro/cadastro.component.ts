@@ -33,6 +33,7 @@ export class CadastroComponent implements OnInit {
     this.service.buscarPorCodigo(this.codigo).subscribe(
       resp => {
         this.dataNascimento = new Date(resp.dataNascimento);
+        this.dataNascimento.setDate(this.dataNascimento.getDate() + 1);
         this.cliente = resp;
       }, error => {
         this.message.add({ severity: 'error', summary: 'Erro', detail: error.error });
@@ -58,27 +59,21 @@ export class CadastroComponent implements OnInit {
         console.log(error);
         this.message.add({ severity: 'error', summary: 'Erro', detail: error.message });
       }
-      );
-    }
-    alterar() {
-      this.dateToString();
-      this.service.alterar(this.cliente).subscribe(
-        resp => {
-          this.message.add({ severity: 'success', summary: 'Sucesso', detail: 'Cliente alterado com sucesso.' });
-          this.router.navigate(['clientes']);
+    );
+  }
+  alterar() {
+    this.dateToString();
+    this.service.alterar(this.cliente).subscribe(
+      resp => {
+        this.message.add({ severity: 'success', summary: 'Sucesso', detail: 'Cliente alterado com sucesso.' });
+        this.router.navigate(['clientes']);
       }, error => {
         this.message.add({ severity: 'error', summary: 'Erro', detail: error.message });
       }
     );
   }
-  
-  dateToString(){
-    let dia = this.dataNascimento.getDate().toString();
-    let mes = (this.dataNascimento.getMonth() + 1).toString();
-    let ano = this.dataNascimento.getFullYear().toString();
-    dia = dia.length === 1 ? '0'+dia : dia;
-    mes = mes.length === 1 ? '0'+mes : mes;
 
-    this.cliente.dataNascimento =  ano + '-' + mes + '-' + dia;
+  dateToString() {
+    this.cliente.dataNascimento = this.dataNascimento.toISOString();
   }
 }

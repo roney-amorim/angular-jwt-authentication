@@ -13,16 +13,12 @@ import { Router } from '@angular/router';
 export class ListarComponent implements OnInit {
 
   clientes: Cliente[];
-  cols: any[];
+ 
   constructor(private service: ClientesService, private message: MessageService, private router:Router) {
   }
 
   ngOnInit() {
     this.carregarClientes();
-    this.cols = [
-      { field: 'nome', header: 'Nome' },
-      { field: 'documento', header: 'Documento' }
-    ];
   }
 
   carregarClientes() {
