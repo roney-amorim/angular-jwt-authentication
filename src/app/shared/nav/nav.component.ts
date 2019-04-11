@@ -12,7 +12,8 @@ export class NavComponent implements OnInit {
 
   userItems: MenuItem[];
   items: MenuItem[];
-
+  toggleMenu: boolean = false;
+  
   constructor(private authService: AuthService) { 
   }
 
