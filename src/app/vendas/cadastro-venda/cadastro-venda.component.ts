@@ -25,18 +25,6 @@ export class CadastroVendaComponent implements OnInit {
 
   }
 
-  salvar() {
-    this.dateToString();
-    this.service.salvar(this.venda).subscribe(
-      resp => {
-        this.message.add({ severity: 'success', summary: 'Sucesso', detail: 'Venda cadastrada com sucesso.' });
-        this.router.navigate(['vendas']);
-      }, error => {
-        console.log(error);
-        this.message.add({ severity: 'error', summary: 'Erro', detail: error.message });
-      }
-    );
-  }
   dateToString() {
     this.venda.dataVenda = this.dataVenda.toISOString().substring(0, 10);
   }
@@ -65,6 +53,5 @@ export class CadastroVendaComponent implements OnInit {
     }, erro => {
       console.log(erro.message);
     });
-
   }
 }

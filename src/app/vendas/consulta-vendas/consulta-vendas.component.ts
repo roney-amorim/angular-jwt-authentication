@@ -17,25 +17,5 @@ export class ConsultaVendasComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.carregarVendas();
   }
-
-  carregarVendas() {
-    this.service.consultar().subscribe(response => {
-      console.log(response);
-      this.vendas = response;
-    }, erro => {
-      this.message.add({ severity: 'error', summary: 'Erro ao carregar vendas', detail: erro.message });
-    });
-  }
-
-  remover(venda: Venda) {
-    this.service.deletar(venda.codigoVenda).subscribe(() => {
-      this.carregarVendas();
-      this.message.add({ severity: 'success', summary: 'Sucesso', detail: 'Venda cancelada com sucesso' });
-    }, erro => {
-      this.message.add({ severity: 'error', summary: 'Erro ao carregar vendas', detail: erro.message });
-    });
-  }
-
 }

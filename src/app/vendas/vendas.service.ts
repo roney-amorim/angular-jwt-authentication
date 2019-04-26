@@ -16,15 +16,6 @@ export class VendasService {
     this.BASE_URL = environment.url;
   }
 
-  consultar(): Observable<Venda[]> {
-    return this.http.get<Venda[]>(this.BASE_URL.concat('/vendas')).pipe(map(json => { return json }));
-  }
-  salvar(venda: Venda): Observable<Venda> {
-    return this.http.post<Venda>(this.BASE_URL.concat('/vendas'), venda).pipe(map(json => { return json }));
-  }
-  deletar(codigo: number): Observable<Venda> {
-    return this.http.delete<Venda>(this.BASE_URL.concat(`/vendas/${codigo}`)).pipe(map(json => { return json }));
-  }
   filtrarClientes() {
     return this.http.get<Cliente[]>(this.BASE_URL.concat('/clientes')).pipe(map(json => { return json }));
   }

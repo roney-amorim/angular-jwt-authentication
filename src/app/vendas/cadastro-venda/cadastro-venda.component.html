@@ -7,7 +7,7 @@
       <h3 class="first">Valor Venda</h3>
       <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon"><i class="fa fa-drivers-license"></i></span>
-        <input type="text" pInputText placeholder="Preço da Venda" [(ngModel)]="venda.precoVenda">
+        <input type="text" pInputText placeholder="Preço da Venda">
       </div>
     </div>
     <div class="ui-g-12 ui-md-3">
@@ -21,7 +21,7 @@
       <h3 class="first">Cliente</h3>
       <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon"><i class="fa fa-users"></i></span>
-        <p-autoComplete [(ngModel)]="venda.cliente" [suggestions]="clientes" (completeMethod)="filtrarClientes($event)"
+        <p-autoComplete [suggestions]="clientes" (completeMethod)="filtrarClientes($event)"
           [size]="30" placeholder="Cliente" [minLength]="2" field="nome"></p-autoComplete>
       </div>
     </div>
@@ -30,7 +30,7 @@
     <h3 class="first">Veículo</h3>
     <div class="ui-inputgroup">
       <span class="ui-inputgroup-addon"><i class="fa fa-car"></i></span>
-      <p-autoComplete [(ngModel)]="venda.veiculo" [suggestions]="veiculos" (completeMethod)="filtrarVeiculos($event)"
+      <p-autoComplete [suggestions]="veiculos" (completeMethod)="filtrarVeiculos($event)"
         [size]="30" placeholder="Veículos" [minLength]="2" field="modelo"></p-autoComplete>
     </div>
   </div>
