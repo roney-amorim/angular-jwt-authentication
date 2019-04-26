@@ -1,23 +1,28 @@
-import { ButtonModule, CalendarModule } from "primeng/primeng";
+import { CalendarModule } from "primeng/primeng";
 import { FormsModule } from "@angular/forms";
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ClientesRoutingModule } from './clientes-routing.module';
-import { CadastroComponent } from './cadastro/cadastro.component';
-import { ListarComponent } from './listar/listar.component';
+import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
+import { ConsultaClientesComponent } from './consulta-clientes/consulta-clientes.component';
+import { TableModule } from 'primeng/table';
 
-import {TableModule} from 'primeng/table';
 @NgModule({
-  declarations: [CadastroComponent, ListarComponent],
+  declarations: [CadastroClienteComponent, ConsultaClientesComponent],
   imports: [
     CommonModule,
     FormsModule,
     ClientesRoutingModule,
-    ButtonModule,
     CalendarModule,
     TableModule
   ],
-  exports: [CadastroComponent, ListarComponent]
+  exports: [
+    CadastroClienteComponent,
+    ConsultaClientesComponent
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
+  ],
 })
 export class ClientesModule { }

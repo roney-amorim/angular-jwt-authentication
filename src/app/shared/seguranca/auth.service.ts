@@ -22,7 +22,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private message: MessageService, 
+    private message: MessageService,
     private router: Router
   ) {
     this.URL = this.apiRoot.url.concat('oauth/token');
@@ -37,22 +37,22 @@ export class AuthService {
     localStorage.setItem('token', authResult.access_token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
-  
+
   get token(): string {
     return localStorage.getItem('token');
   }
-  
+
   login(usuario: Usuario): Observable<void> {
-    const body: any = {username: usuario.nome, password: usuario.senha, grant_type: 'password'};
+    const body: any = { username: usuario.nome, password: usuario.senha, grant_type: 'password' };
 
     return this.http.post<any>(
-        this.URL, body).pipe(map(response => {
-      this.setSession(response);
-    }), catchError((error) => {
-      console.log(error);
-      this.message.add({severity: 'error', summary: 'Erro', detail: error.error});
-      return throwError(error.message);
-    }));
+      this.URL, body).pipe(map(response => {
+        this.setSession(response);
+      }), catchError((error) => {
+        console.log(error);
+        this.message.add({ severity: 'error', summary: 'Erro', detail: error.error });
+        return throwError(error.message);
+      }));
   }
 
   logout() {
@@ -66,18 +66,18 @@ export class AuthService {
       const headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');
       headers.append("Authentication", localStorage.getItem('token'));
-      
-      const body = {grant_type: 'refresh_token'};
+
+      const body = { grant_type: 'refresh_token' };
 
       return this.http.post<any>(
-        this.apiRoot.url.concat('oauth/token'), body, {headers}).pipe(map(response => {
+        this.apiRoot.url.concat('oauth/token'), body, { headers }).pipe(map(response => {
           this.setSession(response);
         }), catchError((error) => {
           console.log(error);
-          this.message.add({severity: 'error', summary: 'Erro', detail: error.message});
+          this.message.add({ severity: 'error', summary: 'Erro', detail: error.message });
           return throwError(error.message);
         }));
-      }
+    }
     return of();
   }
 
@@ -103,8 +103,8 @@ export class AuthService {
     }
     return false;
   }
-  loadToken(){
+  loadToken() {
     const token = localStorage.getItem('token');
-    this.payload = token !== null ? jwtDecode(localStorage.getItem('token')) as JWTPayload : undefined; 
+    this.payload = token !== null ? jwtDecode(localStorage.getItem('token')) as JWTPayload : undefined;
   }
 }

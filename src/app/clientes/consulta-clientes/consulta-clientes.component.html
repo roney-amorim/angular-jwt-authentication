@@ -1,6 +1,12 @@
 <div class="ui-g-12">
 
     <div class="ui-g-10">
+        <div>
+            <h1>CONSULTA DE CLIENTES</h1>
+            <hr>
+        </div>
+    </div>
+    <div class="ui-g-10">
         <p-button [routerLink]="['cadastrar']" label="Novo Cliente" icon="pi pi-plus" iconPos="right"></p-button>
     </div>
 
@@ -20,7 +26,8 @@
                     <td style="text-align:center">{{cliente.documento}}</td>
                     <td style="text-align:center">{{cliente.dataNascimento | date: 'dd/MM/yyyy'}}</td>
                     <td style="text-align:center">
-                        <p-button (click)="remove(cliente.codigoCliente)" icon="pi pi-trash" style="padding-right: 1px"></p-button>
+                        <p-button (click)="remove(cliente.codigoCliente)" icon="pi pi-trash" style="padding-right: 1px">
+                        </p-button>
 
                         <p-button [routerLink]="['cadastrar',cliente.codigoCliente]" icon="pi pi-pencil"></p-button>
                     </td>

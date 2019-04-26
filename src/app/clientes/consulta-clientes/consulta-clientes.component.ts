@@ -1,16 +1,16 @@
 import { MessageService } from "primeng/primeng";
-import { Cliente } from "./../../shared/models/model";
-import { ClientesService } from "./../clientes.service";
+import { Cliente } from "../../shared/models/model";
+import { ClientesService } from "../clientes.service";
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar',
-  templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.css']
+  templateUrl: './consulta-clientes.component.html',
+  styleUrls: ['./consulta-clientes.component.css']
 })
-export class ListarComponent implements OnInit {
+export class ConsultaClientesComponent implements OnInit {
 
   clientes: Cliente[];
  

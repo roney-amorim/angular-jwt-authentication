@@ -1,16 +1,16 @@
 import { catchError } from "rxjs/operators";
 import { MessageService } from "primeng/primeng";
-import { ClientesService } from "./../clientes.service";
+import { ClientesService } from "../clientes.service";
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/shared/models/model';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
-  templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.css']
+  templateUrl: './cadastro-cliente.component.html',
+  styleUrls: ['./cadastro-cliente.component.css']
 })
-export class CadastroComponent implements OnInit {
+export class CadastroClienteComponent implements OnInit {
 
   cliente: Cliente = new Cliente();
   codigo: number;
@@ -74,6 +74,6 @@ export class CadastroComponent implements OnInit {
   }
 
   dateToString() {
-    this.cliente.dataNascimento = this.dataNascimento.toISOString();
+    this.cliente.dataNascimento = this.dataNascimento.toISOString().substring(0,10);
   }
 }

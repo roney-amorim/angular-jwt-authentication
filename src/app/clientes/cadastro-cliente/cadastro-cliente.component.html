@@ -1,5 +1,9 @@
-<!-- <div class="ui-g-12"> -->
 <div class="ui-g-12 ui-fluid">
+
+  <div class="jumbotron text-center">
+    <h1>{{codigo !== undefined ? 'EDIÇÃO' : 'CADASTRO'}} DE CLIENTES</h1>
+  </div>
+
   <div class="ui-g-12 ui-md-4">
     <h3 class="first">Nome Cliente</h3>
     <div class="ui-inputgroup">
@@ -18,12 +22,12 @@
     <h3 class="first">Data de Nascimento</h3>
     <div class="ui-inputgroup">
       <span class="ui-inputgroup-addon"><i class="fa fa-calendar"></i></span>
-      <p-calendar [(ngModel)]="dataNascimento"  placeholder="Data de Nascimento" dateFormat="dd/mm/yy"></p-calendar>
+      <p-calendar [(ngModel)]="dataNascimento" placeholder="Data de Nascimento" dateFormat="dd/mm/yy"></p-calendar>
     </div>
   </div>
 </div>
 <div class="btn-login ui-g-12">
-  <p-button [routerLink]="['/clientes']" label="Voltar" icon="fa fa-reply" iconPos="right"  style="margin-right: 1px"></p-button>
+  <p-button [routerLink]="['/clientes']" label="Voltar" icon="fa fa-reply" iconPos="right" style="margin-right: 1px">
+  </p-button>
   <p-button label="Salvar" (click)="salvar()" icon="pi pi-check" iconPos="right"></p-button>
 </div>
-<!-- </div> -->
